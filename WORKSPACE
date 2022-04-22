@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-workspace(name = "com_github_mjbots_rules_mbed")
+workspace(name = "com_github_EmShin_rules_mbed")
 
 BAZEL_VERSION = "3.4.1"
 BAZEL_VERSION_SHA = "1a64c807716e10c872f1618852d95f4893d81667fe6e691ef696489103c9b460"
@@ -35,19 +35,3 @@ mbed_repository(
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-RULES_MBED_COMMIT = "master"
-
-http_archive(
-    name = "rules_mbed",
-    url = "https://github.com/mjbots/bazel_deps/archive/{}.zip".format(RULES_MBED_COMMIT),
-    sha256 = "9e234ffe6ff6c64ed33fd77d82a27bc0f4fb782f4818b7a45730f2d4709ab054",
-    strip_prefix = "rules_mbed-{}".format(RULES_MBED_COMMIT),
-)
-
-load("@rules_mbed//:rules.bzl", "mbed_register")
-mbed_register(config = {
-    "mbed_target": "targets/TARGET_STM/TARGET_STM32F4/TARGET_STM32F411xE/TARGET_NUCLEO_F411RE",
-    "mbed_config": None,
-  }
-)
